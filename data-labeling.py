@@ -23,6 +23,9 @@ while i < len(df_copy['Marker']):
 
 print(typeNames)
 print(i)
+
+deletingIndex = i 
+#print(deletingIndex)
 i = i +1
 
 typeNameCounter = 0
@@ -31,18 +34,23 @@ while i < len(df_copy['Marker']):
     if(pd.isna(df_copy['Marker'][i])==False):
         typeNames.append(df_copy['Marker'][i]) 
         typeNameCounter = typeNameCounter + 1
-        break
+        #break
     #print('in')
     df_copy.at[i,'Marker'] = typeNames[typeNameCounter]
     i = i + 1
 
 print('i value after loop: ',i)
-print(df_copy['Marker'][i])
-print('before marker', df_copy['Marker'][i-1])
+#print(df_copy['Marker'][i])
+#print('before marker', df_copy['Marker'][i-1])
 print(typeNames)
+print("deleting index:",deletingIndex)
+df_copy.drop(df.index[:deletingIndex], inplace=True) #delete all previous rows
+
+print(df_copy.Marker)
+print(df_copy)
 
 #delete everything before hand
-#add back in the first 3 columns (maybe I can get rid of the deleting rows)
+#add back in the first 3 columns (have to delete it first: tested it out)
 
 
 
