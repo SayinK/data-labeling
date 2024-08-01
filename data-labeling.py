@@ -3,6 +3,11 @@
 # pip installing all the needed packages 
 import pandas as pd
 
+df = pd.read_csv('unsafe_data.csv')
+new_rows = df.iloc[0:2]
+df_new_rows = pd.DataFrame(new_rows)
+print(df_new_rows)
+
 df = pd.read_csv('unsafe_data.csv', skiprows = lambda x: x in [0, 1, 2]) #skipping the first 3 rows
 pd.options.mode.copy_on_write = True
 typeNames = [] #store the used type names
@@ -49,7 +54,11 @@ df_copy.drop(df.index[:deletingIndex], inplace=True) #delete all previous rows
 print(df_copy.Marker)
 print(df_copy)
 
-#delete everything before hand
+df_copy.to_csv('unsafe_data_new.csv',index=False)
+
+#df_copy = pd.concat([df_new_rows, df_copy])
+#print('final:',df_copy)
+
 #add back in the first 3 columns (have to delete it first: tested it out)
 
 
