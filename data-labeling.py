@@ -3,12 +3,12 @@
 # pip installing all the needed packages 
 import pandas as pd
 
-df = pd.read_csv('unsafe_data.csv')
+df = pd.read_csv('2024-03-13-10-50_CIAC_Study-4.csv')
 new_rows = df.iloc[0:2]
 df_new_rows = pd.DataFrame(new_rows)
 print(df_new_rows)
 
-df = pd.read_csv('unsafe_data.csv', skiprows = lambda x: x in [0, 1, 2]) #skipping the first 3 rows
+df = pd.read_csv('2024-03-13-10-50_CIAC_Study-4.csv', skiprows = lambda x: x in [0, 1, 2]) #skipping the first 3 rows
 pd.options.mode.copy_on_write = True
 typeNames = [] #store the used type names
 
@@ -22,8 +22,6 @@ while i < len(df_copy['Marker']):
     else:
         typeNames.append(df_copy['Marker'][i]) 
         break
-        #df.Marker[df.Marker == 'nan'] = typeNames[0]
-        #df_copy['Marker'].replace(df_copy['Marker'][i], typeNames[0], inplace=True)
     i = i + 1
 
 print(typeNames)
@@ -54,7 +52,7 @@ df_copy.drop(df.index[:deletingIndex], inplace=True) #delete all previous rows
 print(df_copy.Marker)
 print(df_copy)
 
-df_copy.to_csv('unsafe_data_new.csv',index=False)
+df_copy.to_csv('2024-03-13-10-50_CIAC_Study-4_new.csv',index=False)
 
 #df_copy = pd.concat([df_new_rows, df_copy])
 #print('final:',df_copy)
